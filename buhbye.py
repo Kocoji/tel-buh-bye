@@ -45,9 +45,12 @@ async def bye(force: bool = typer.Option(
 
     If --force is not used, will ask for confirmation.
     """
-    if force:
-        with open(filename) as file:
-            whiteList = [line.rstrip() for line in file]
+    if force:        
+        try:
+            with open(filename) as file:
+                whiteList = [line.rstrip() for line in file]
+        except FileNotFoundError:
+            whiteList = []
         async with client:      
             async for dialog in client.iter_dialogs():
                 if dialog.is_group or dialog.is_channel:
