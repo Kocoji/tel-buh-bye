@@ -1,0 +1,5 @@
+typer-cli
+telethon
+setuptools
+cryptg
+pillow

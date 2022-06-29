@@ -1,0 +1,4 @@
+*.session
+.obsidian/
+code/
+docs/
