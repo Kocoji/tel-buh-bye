@@ -16,6 +16,16 @@ This code is used to leave the group and channel that i have joined.
   - e.g. `export api_id='12345678' api_hash='d0d46c372ff1f1522434951a2b3c4d'`
   - or, create the file include 2 vars: `api_id='12345678' api_hash='d0d46c372ff1f1522434951a2b3c4d'`, then, from the shell: type `. thefilename`
 
+# Docker
+You can build the image that included in this source.
+
+Sample commands:
+- Build the image: `docker build . -t buhbye`
+- Run it:
+``` bash
+docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye getlist
+docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye bye --force
+```
 # Commands
 - Currently, this code has 2 commands:
   - `getlist`
