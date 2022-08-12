@@ -48,6 +48,8 @@ async def getlist():
                 with open(filename, "a") as file:
                     file.write(dialog.name + "\n")   
         typer.echo("Done! Found {} groups and channel\nPlease check the grouplist.txt in ./data folder".format(count))
+
+
 @app.command()
 @coro
 async def bye(force: bool = typer.Option(
@@ -81,6 +83,7 @@ async def bye(force: bool = typer.Option(
                         await dialog.delete()
     else:
         typer.echo("Operation cancelled")
+
 
 if __name__ == "__main__":
     app()
