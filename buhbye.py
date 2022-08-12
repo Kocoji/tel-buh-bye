@@ -8,11 +8,11 @@ from functools import wraps
 import typer
 
 # Use your own values from my.telegram.org
-api_id = os.getenv('api_id')
-api_hash = os.getenv('api_hash')
-client = TelegramClient('session2', api_id, api_hash)
-
-filename = "grouplist.txt"
+path= "./data"
+filename = path +"/grouplist.txt"
+api_id = os.getenv('API_ID')
+api_hash = os.getenv('API_HASH')
+client = TelegramClient(path + '/session', api_id, api_hash)
 
 app = typer.Typer()
 
@@ -22,17 +22,32 @@ def coro(f):
         return asyncio.run(f(*args, **kwargs))
     return wrapper
 
+
+def exists(path):
+    return os.path.exists(path)
+
+
 @app.command()
 @coro
 async def getlist():
-    await asyncio.sleep(1)  
-    async with client:      
+    await asyncio.sleep(1)
+    try:
+        os.makedirs(path, exist_ok=False)
+    except FileExistsError:
+        pass
+
+    if exists(filename):
+        os.remove(filename)
+
+    async with client:   
+        count = 0   
+        typer.echo("running")
         async for dialog in client.iter_dialogs():
             if dialog.is_group or dialog.is_channel:
-                typer.echo(dialog.name)
+                count += 1
                 with open(filename, "a") as file:
                     file.write(dialog.name + "\n")   
-
+        typer.echo("Done! Found {} groups and channel\nPlease check the grouplist.txt in ./data folder".format(count))
 @app.command()
 @coro
 async def bye(force: bool = typer.Option(
