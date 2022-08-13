@@ -24,7 +24,7 @@ Sample commands:
 - Run it:
   - getlist cmd: `docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye getlist`
   - bye cmd: `docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye bye --force`
-```
+
 # Commands
 Currently, this code has 2 commands:
 - `getlist`
