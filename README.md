@@ -17,10 +17,8 @@ This script is used to leave the group and channel that i have joined.
   - or, create the file include 2 vars: `api_id='12345678' api_hash='d0d46c372ff1f1522434951a2b3c4d'`, then, from the shell: type `. thefilename`
 
 # Docker
-You can build the image that included in this source.
-
-Sample commands:
-- Build the image: `docker build . -t buhbye`
+You can build the image that included in this source. e.g. `docker build . -t buhbye`
+Or, you can pull the image: `docker pull kocoji/buhbye`
 - Run it:
   - getlist cmd: `docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye getlist`
   - bye cmd: `docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye bye --force`
@@ -28,9 +26,9 @@ Sample commands:
 # Commands
 Currently, this code has 2 commands:
 - `getlist`
-  - to get the list of group chats & channels that you have joined, then save to the `grouplist.txt` file
+  - to get the list of group chats & channels that you have joined, then save to the `whitelist.txt` file
   - Edit the file and keep the room you want to stay in.
-  - the `bye` command read the name of group chat that saved in `grouplist.txt` as the whitelist, so edit and save the name of group/channel you want to keep in this file only. 
+  - the `bye` command read the name of group chat that saved in `whitelist.txt` as the whitelist, so edit and save the name of group/channel you want to keep in this file only. 
 - `bye`:
   - if you run this one command without run/edit the `getlist` whitelist file. You will leave all groups/channels 
   - use `--force` to run in the unattend mode.
