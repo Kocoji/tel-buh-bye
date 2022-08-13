@@ -1,4 +1,4 @@
-This code is used to leave the group and channel that i have joined.
+This script is used to leave the group and channel that i have joined.
 
 # Requirement & How to
 - Clone this repo
@@ -22,21 +22,20 @@ You can build the image that included in this source.
 Sample commands:
 - Build the image: `docker build . -t buhbye`
 - Run it:
-``` bash
-docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye getlist
-docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye bye --force
+`docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye getlist`
+`docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye bye --force`
 ```
 # Commands
-- Currently, this code has 2 commands:
-  - `getlist`
-    - to get the list of group chats & channels that you have joined, then save to the `grouplist.txt` file
-    - Edit the file and keep the room you want to stay in.
-    - the `bye` command read the name of group chat that saved in `grouplist.txt` as the whitelist, so edit and save the name of group/channel you want to keep in this file only. 
-  - `bye`:
-    - if you run this one command without run/edit the `getlist` whitelist file. You will leave all groups/channels 
-    - use `--force` to run in the unattend mode.
+Currently, this code has 2 commands:
+- `getlist`
+  - to get the list of group chats & channels that you have joined, then save to the `grouplist.txt` file
+  - Edit the file and keep the room you want to stay in.
+  - the `bye` command read the name of group chat that saved in `grouplist.txt` as the whitelist, so edit and save the name of group/channel you want to keep in this file only. 
+- `bye`:
+  - if you run this one command without run/edit the `getlist` whitelist file. You will leave all groups/channels 
+  - use `--force` to run in the unattend mode.
 
 # Problems.
-- You might be get the error from Telegram similar the below:
+You might be get the error from Telegram similar the below:
 `telethon.errors.rpcerrorlist.FloodWaitError: A wait of 246 seconds is required (caused by DeleteChatUserRequest)`
   - solution: wait until the telegram unblock you

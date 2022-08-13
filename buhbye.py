@@ -9,7 +9,7 @@ import typer
 
 # Use your own values from my.telegram.org
 path= "./data"
-filename = path +"/grouplist.txt"
+filename = path +"/whitelist.txt"
 api_id = os.getenv('API_ID')
 api_hash = os.getenv('API_HASH')
 client = TelegramClient(path + '/session', api_id, api_hash)
@@ -22,33 +22,33 @@ def coro(f):
         return asyncio.run(f(*args, **kwargs))
     return wrapper
 
-
-def exists(path):
-    return os.path.exists(path)
-
+def exists(str):
+    return os.path.exists(str)
 
 @app.command()
 @coro
 async def getlist():
     await asyncio.sleep(1)
-    try:
-        os.makedirs(path, exist_ok=False)
-    except FileExistsError:
+    if exists(path): 
         pass
+    else:
+        os.mkdir(path)
 
     if exists(filename):
         os.remove(filename)
 
     async with client:   
         count = 0   
-        typer.echo("running")
+        typer.echo("Running")
         async for dialog in client.iter_dialogs():
             if dialog.is_group or dialog.is_channel:
                 count += 1
                 with open(filename, "a") as file:
                     file.write(dialog.name + "\n")   
-        typer.echo("Done! Found {} groups and channel\nPlease check the grouplist.txt in ./data folder".format(count))
-
+        typer.echo("Done! Found {} groups and channels!".format(count))
+        if exists(filename):
+            typer.echo("Please check the whitelist.txt in ./data folder")
+            os.chmod(filename, 0o777)
 
 @app.command()
 @coro
@@ -83,7 +83,6 @@ async def bye(force: bool = typer.Option(
                         await dialog.delete()
     else:
         typer.echo("Operation cancelled")
-
 
 if __name__ == "__main__":
     app()
