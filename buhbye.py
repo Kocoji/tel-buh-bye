@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import asyncio
-import os
+import asyncio, os, time
 from telethon import TelegramClient
 from telethon import utils
+from telethon import errors
 from typing import Optional
 from functools import wraps
 import typer
@@ -79,8 +79,12 @@ async def bye(force: bool = typer.Option(
                             print("Don't delete ",dialog.name)
                             break
                     if isDel:
-                        print("Bye ",dialog.name)
-                        await dialog.delete()
+                        try:
+                            print("Bye ",dialog.name)
+                            await dialog.delete()
+                        except errors.FloodWaitError as e:
+                            print('Have to sleep', e.seconds, 'seconds')
+                            time.sleep(e.seconds)
     else:
         typer.echo("Operation cancelled")
 
