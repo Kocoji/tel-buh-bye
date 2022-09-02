@@ -1,5 +1,3 @@
-This script is used to leave the group and channel that i have joined.
-
 # Requirement & How to
 - Clone this repo:
   - `git clone https://github.com/Kocoji/tel-buh-bye.git`
@@ -17,7 +15,8 @@ This script is used to leave the group and channel that i have joined.
   - Or, create the file include 2 vars: `API_ID='12345678' API_HASH='d0d46c372ff1f1522434951a2b3c4d'`, then, from the shell: type `. thefilename`
 
 # Docker
-You can build the image that included in this source. e.g. `docker build . -t buhbye`
+You can build the image that included in this source. E.g. `docker build . -t buhbye`
+
 Or, you can pull the image from my Docker Hub: `docker pull kocoji/buhbye`
 - Run it (Sample commands, remember to replace your env variables!):
   - `getlist` cmd: `docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye getlist`
@@ -32,4 +31,3 @@ Currently, this code has 2 commands:
 - `bye`:
   - if you run this one command without run/update the `getlist` whitelist file. You will leave all groups/channels 
   - use `--force` to run in the unattend mode.
-
