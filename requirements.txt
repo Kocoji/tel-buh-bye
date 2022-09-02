@@ -1,2 +1,2 @@
-typer-cli
-telethon
+typer-cli==0.0.12
+telethon==1.25.0
