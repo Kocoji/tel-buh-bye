@@ -6,10 +6,14 @@ on:
       - 'master'
     tags:
       - 'v*'
+    paths-ignore:
+      - '**.md'      
 
   pull_request:
     branches:
       - 'master'
+    paths-ignore:
+      - '**.md'      
 
 jobs:
   docker:
