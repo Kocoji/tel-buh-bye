@@ -23,7 +23,7 @@ Or, you can pull the image from my Docker Hub: `docker pull kocoji/buhbye`
   - `bye` cmd: `docker run --rm -it -v $(pwd)/data:/usr/src/app/data -e API_ID=12345678 -e API_HASH='daae74e0549286ae54b4d60c8b9a6c89a' buhbye bye --force`
 
 # Commands
-Currently, this code has 2 commands:
+Currently, this script has 2 commands:
 - `getlist`
   - to get the list of group chats & channels that you have joined, then save to the `whitelist.txt` file
   - Edit the file and keep the room you want to stay in.
